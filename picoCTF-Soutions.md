@@ -2,13 +2,19 @@
 
 ## patchme.py
 
-into that code password is unncessary so, comment some unuseful code lines.
+### Solution
+- The password check in the code is unnecessary.
+- Simply comment out the lines related to password verification.
 
-## rail-fence
+---
 
-search on the google and i got the code to decrypt the message.
+## Rail-Fence
 
-[Reference code](https://www.geeksforgeeks.org/rail-fence-cipher-encryption-decryption/)
+### Solution
+- The challenge uses a Rail-Fence cipher. I found a decryption method online and used it to decode the message.
+
+**Reference:**
+- [Rail-Fence Cipher Decryption Code](https://www.geeksforgeeks.org/rail-fence-cipher-encryption-decryption/)
 
 ```cpp
 #include <iostream>
@@ -91,47 +97,67 @@ int main(void)
 }
 ```
 
+---
+
 ## credstuff
 
-`tar -xf leak.tar`
+### Solution
+- Extract the archive and inspect the files:
+  ```bash
+  tar -xf leak.tar
+  cat usernames.txt
+  cat passwords.txt
+  ```
+- Search for the specific user:
+  ```bash
+  cat usernames.txt | grep -n "cultiris"
+  ```
+- Retrieve the corresponding password:
+  ```bash
+  sed -n 378,378p passwords.txt
+  ```
+- The flag is encrypted using ROT13. Decode it to get the flag.
 
-`cat usernames.txt`
-
-`cat passwords.txt`
-
-`cat usernames.txt | grep -n "cultiris"`
-
-`sed -n 378,378p passwords.txt`
-
-I got a flag but it is encrypted. (Algo:ROT13)
+---
 
 ## Enhance
 
-download the image and extract all the string using string command and I got the flag
+### Solution
+- Extract strings from the provided image file:
+  ```bash
+  strings drawing.flag.svg
+  ```
+- The extracted text contains the flag.
 
-`strings drawing.flag.svg`
+
+---
 
 ## file-run1
 
-just execute the file and i got the flag
+### Solution
+- Simply execute the file to reveal the flag.
+
+---
 
 ## file-run2
 
-execute the file with "Hello!" arrgument
+### Solution
+- Execute the file with a "Hello!" argument to obtain the flag.
+
+---
 
 ## safe opener
 
-download the file and get the encoded text which is look like an base64
+### Solution
+- Download the provided file and extract the encoded text.
+- The text appears to be Base64 encoded. Decode it to reveal the flag.
 
-so decode it and we get our flag.
-
-## substitution2
-
-Not solved yet
+---
 
 ## unpackme
 
-change into the program add print line to print output and we the flag
+### Solution
+- Modify the program to print the decrypted payload.
 
 Reference Code and [link](https://cryptography.io/en/latest/fernet/):
 
@@ -187,94 +213,147 @@ print(plain)
 exec(plain.decode())
 ```
 
+---
+
 ## basic-mod2
 
-mode inverse get the flag from that
+### Solution
+- Use modular inverse to retrieve the flag.
+
+---
 
 ## Search source
 
-`wget -m [url]`
+### Solution
+- Download the entire site using `wget`:
+  ```bash
+  wget -m [url]
+  ```
+- The flag was found in the `style.css` file.
 
-flag was in style.css file
+---
 
 ## Forbidden Path
 
-just change/add the hearder
+### Solution
+- Modify the HTTP request header to include:
+  ```bash
+  X-Origination-IP: 127.0.0.1
+  ```
+- Access the file path using:
+  ```bash
+  /../../../../../../../../../../flag.txt
+  ```
+- Ensure the file path is URL encoded.
 
-`X-Origination-IP: 127.0.0.1`
-
-and add the file path
-
-`/../../../../../../../../../../flag.txt`
-
-above file should be in url encoded.
+---
 
 ## Secrets
 
-using gobuster tool I got my first hidden path which name was *secret*. After using again gobuster I got *hidden* path there was a secret directory path mention in html source code which was *superhidden*. there was our flag is in web page's source code.
+### Solution
+- Use `gobuster` to discover hidden paths:
+  ```bash
+  gobuster dir -u [url] -w /path/to/wordlist
+  ```
+- Hidden paths such as `secret`, `hidden`, and `superhidden` contain clues leading to the flag in the source code.
+
+---
 
 ## Roboto Sans
 
-*flag1.txt* and *js/myfile.txt* file name got from the *robots.txt* page which is in base64 encoded.
+### Solution
+- Retrieve file names from `robots.txt`, including `flag1.txt` and `js/myfile.txt`.
+- Decode the Base64 encoded content from `js/myfile.txt` to reveal the flag.
 
-and our flag into the *js/myfile.txt* file.
+---
 
 ## SQL Direct
 
-just use PostgreSQL.
+### Solution
+- Use PostgreSQL syntaxs to access the database:
+  ```sql
+  \dt+
+  SELECT * FROM flags;
+  ```
 
-1. `\dt+` : By using this command we got table list
-
-2. `SELECT * FROM flags;` : after enter this command we could get our flag.
+---
 
 ## SQLiLite
 
-username: admin
-password: ' OR 1=1-- -
+### Solution
+- Use SQL injection with the following credentials:
+  ```
+  username: admin
+  password: ' OR 1=1-- -
+  ```
 
-and we got our flag.
+---
 
 ## Power Cookie
 
-intersept the request and change a cookie flag value to 1
+### Solution
+- Intercept the request and modify the cookie value to:
+  ```
+  Cookie: isAdmin=1
+  ```
+- The modified request reveals the flag.
 
-*Cookie: isAdmin=1*
-
-and we get our flag.
+---
 
 ## GDB Test Drive
 
-just follow the instruction and we will get the flag.
+### Solution
+- Follow the provided instructions within the GDB session to uncover the flag.
+
+---
 
 ## bloat.py
 
-open the python program and flow the code and we can get the password from the code just copy that string and paste into another python file just print the password.
+### Solution
+- Open the Python script and trace the logic to identify the password.
+- Copy the relevant string to another Python file and print the password.
 
-## Fresh java
+---
 
-decompile the class file and remove the unwanted things using text ediotor and print the flag in reverse order.
+## Fresh Java
 
-## Lookey here
+### Solution
+- Decompile the Java class file and modify it to output the flag in reverse order.
 
-just open the text file and search or use find tool: "pico{".
+---
 
-## Reduction gone wrong
+## Lookey Here
 
-open the pdf and select the black content
+### Solution
+- Open the text file and search for the flag using:
+  ```bash
+  grep "pico{" filename.txt
+  ```
+---
 
-## Sleuthkit intro
+## Reduction Gone Wrong
 
-follow the instruction and get the flag
+### Solution
+- Open the PDF and highlight the blacked-out sections to reveal hidden text containing the flag.
 
-```
-gunzip disk.img.gz
-mmls -a disk.img
-```
+---
 
-Enter the linux image length in nc command.
+## Sleuthkit Intro
 
-## buffer overflow 0
+### Solution
+- Follow these commands to analyze the disk image and retrieve the flag:
+  ```bash
+  gunzip disk.img.gz
+  mmls -a disk.img
+  ```
+
+- Enter the linux image length in nc command.
+
+---
+
+## Buffer Overflow 0
+
+### Solution
+- Enter the provided shellcode to trigger the buffer overflow and obtain the flag:
 
 `\x31\xc0\x31\xdb\x31\xd2\x53\x68\x55\x6e\x69\x0a\x68\x64\x55`
-
-enter the shellcode and get we got our flag.
